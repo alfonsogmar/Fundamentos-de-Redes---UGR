@@ -1,0 +1,18 @@
+import java.net.Socket;
+
+public class YodafyServerThread extends Thread
+{
+	private Socket socket;
+	// En el constructor podemos pasarle alguna variable que hayamos
+	// creado en otra clase. Así podemos compartir algunos datos.
+	YodafyServerThread(Socket s) {
+		this.socket = s;
+	}
+	// El contenido de este método se ejecutará tras llamar al
+	// método "start()". Se trata del procesamiento de la hebra.
+	public void run() {
+		ProcesadorYodafy processor=new ProcesadorYodafy(socket);
+		processor.procesa();
+	}
+
+}
